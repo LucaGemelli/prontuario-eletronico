@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -42,5 +43,10 @@ public class PacienteController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         pacienteService.delete(id);
+    }
+
+    @GetMapping("/usuarios/{id}")
+    public List<Paciente> findPacientesByIdUsuario(@PathVariable Long id) {
+        return pacienteService.findPacientesByIdUsuario(id);
     }
 }

@@ -25,9 +25,8 @@ public class PacienteService {
         return pacienteRepository.findAll(pageable);
     }
 
-    public Optional<Paciente> findById(Long id) {
-        verifyIfPacienteExistsById(id);
-        return pacienteRepository.findById(id);
+    public Paciente findById(Long id) {
+        return findPacienteById(id);
     }
 
     public Paciente save(Paciente paciente) {
@@ -38,21 +37,20 @@ public class PacienteService {
     }
 
     public Paciente update(Paciente paciente) {
-        verifyIfPacienteExistsById(paciente.getId());
+        findPacienteById(paciente.getId());
         return pacienteRepository.save(paciente);
     }
 
-    private void verifyIfPacienteExistsById(Long id) {
-        if (!pacienteRepository.existsById(id))
-            throw new NotFoundException("Paciente não encontrado!");
-    }
-
     public void delete(Long id) {
-        verifyIfPacienteExistsById(id);
+        findPacienteById(id);
         pacienteRepository.deleteById(id);
     }
 
-    //TODO verificar necessidade desse método de consulta
+    private Paciente findPacienteById(Long id) {
+        return pacienteRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Paciente não encontrado!"));
+    }
+
     public List<Paciente> findPacientesByIdUsuario(Long id) {
         Spliterator<Paciente> spliterator = pacienteRepository.findAll().spliterator();
         List<Paciente> pacienteList = StreamSupport.stream(spliterator, false)
@@ -64,5 +62,12 @@ public class PacienteService {
         }
 
         return pacienteList;
+    }
+
+    public List<Paciente> findPacientesByIdCaso(Long idCaso) {
+        Spliterator<Paciente> spliterator = pacienteRepository.findAll().spliterator();
+        return StreamSupport.stream(spliterator, false)
+                .filter(paciente -> Objects.equals(paciente.getCaso().getId(), idCaso))
+                .collect(Collectors.toList());
     }
 }

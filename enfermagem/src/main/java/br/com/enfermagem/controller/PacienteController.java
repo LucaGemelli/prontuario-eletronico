@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/enfermagem/pacientes")
@@ -26,7 +25,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Paciente> findById(@PathVariable Long id) {
+    public Paciente findById(@PathVariable Long id) {
         return pacienteService.findById(id);
     }
 
@@ -36,7 +35,7 @@ public class PacienteController {
     }
 
     @PutMapping
-    public Paciente update(@RequestBody Paciente paciente) {
+    public Paciente update(@Valid @RequestBody Paciente paciente) {
         return pacienteService.update(paciente);
     }
 

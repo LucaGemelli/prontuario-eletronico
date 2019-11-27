@@ -34,9 +34,14 @@ public class Caso {
     @ManyToOne
     @JoinColumn(name = "idcasousuario")
     @JsonIgnoreProperties({"casos", "pacientes"})
+    @JsonIgnore
     private Usuario usuario;
 
     @OneToMany(mappedBy = "caso", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Paciente> pacientes;
+
+    @OneToMany(mappedBy = "caso", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<QuadroPaciente> quadroPacientes;
 }

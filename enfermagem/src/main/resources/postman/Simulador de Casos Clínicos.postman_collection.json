@@ -483,6 +483,151 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Quadro Paciente",
+			"item": [
+				{
+					"name": "Listar quadros pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enfermagem",
+								"quadroPaciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar quadros pacientes por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente/88",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enfermagem",
+								"quadroPaciente",
+								"88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar quadro paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"descricaoQuadroPaciente\",\r\n    \"caso\": {\r\n        \"id\": 4,\r\n        \"identificacao\": \"Prática Enfermagem II - Tarde - Paciente Jorgee\",\r\n        \"code\": \"6488D\",\r\n        \"dataHora\": \"2019-11-27T00:50:00\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enfermagem",
+								"quadroPaciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar quadro paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 87,\r\n    \"descricao\": \"descricao Quadro Paciente\",\r\n    \"caso\": {\r\n        \"id\": 4,\r\n        \"identificacao\": \"Prática Enfermagem II - Tarde - Paciente Jorgee\",\r\n        \"code\": \"6488D\",\r\n        \"dataHora\": \"2019-11-27T00:50:00\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enfermagem",
+								"quadroPaciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir quadro paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente/88",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"enfermagem",
+								"quadroPaciente",
+								"88"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

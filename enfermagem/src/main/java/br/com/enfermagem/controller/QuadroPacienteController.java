@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/enfermagem/quadroPaciente")
+@RequestMapping("/quadroPaciente")
 public class QuadroPacienteController {
 
     private final QuadroPacienteService quadroPacienteService;

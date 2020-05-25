@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/enfermagem/pacientes")
+@RequestMapping("/pacientes")
 public class PacienteController {
 
     private final PacienteService pacienteService;

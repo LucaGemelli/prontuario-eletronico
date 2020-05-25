@@ -6,14 +6,15 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"usuario", "caso"})
-@EqualsAndHashCode(exclude = {"usuario", "caso"})
+@ToString(exclude = {"usuario", "caso", "comentarios"})
+@EqualsAndHashCode(exclude = {"usuario", "caso", "comentarios"})
 @Table(name = "pacientes")
 public class Paciente {
 
@@ -277,6 +278,10 @@ public class Paciente {
 
     @ManyToOne
     @JoinColumn(name = "idpacientecaso")
-    @JsonIgnoreProperties({"pacientes", "usuario"})
+    @JsonIgnoreProperties({"pacientes", "usuario", "quadroPacientes"})
     private Caso caso;
+
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("paciente")
+    private List<Comentario> comentarios;
 }

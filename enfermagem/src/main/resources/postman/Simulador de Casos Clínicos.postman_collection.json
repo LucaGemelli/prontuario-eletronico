@@ -14,16 +14,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/pacientes",
+							"raw": "http://localhost:8080/api-enfermagem/pacientes?page=0",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"pacientes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								}
 							]
 						},
 						"description": "Listar pacientes"
@@ -36,15 +41,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/pacientes/65",
+							"raw": "http://localhost:8080/api-enfermagem/pacientes/65",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"pacientes",
 								"65"
 							]
@@ -86,15 +90,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/pacientes/",
+							"raw": "http://localhost:8080/api-enfermagem/pacientes/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"pacientes",
 								""
 							]
@@ -124,15 +127,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/pacientes/",
+							"raw": "http://localhost:8080/api-enfermagem/pacientes/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"pacientes",
 								""
 							]
@@ -146,15 +148,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/pacientes/66",
+							"raw": "http://localhost:8080/api-enfermagem/pacientes/66",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"pacientes",
 								"66"
 							]
@@ -168,15 +169,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/pacientes/usuarios/2",
+							"raw": "http://localhost:8080/api-enfermagem/pacientes/usuarios/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"pacientes",
 								"usuarios",
 								"2"
@@ -197,15 +197,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/casos",
+							"raw": "http://localhost:8080/api-enfermagem/casos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"casos"
 							]
 						}
@@ -218,15 +217,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/casos/5",
+							"raw": "http://localhost:8080/api-enfermagem/casos/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"casos",
 								"5"
 							]
@@ -248,7 +246,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"identificacao\": \"identificacao\",\r\n    \"dataHora\": \"2019-11-23T11:53:28.722431\",\r\n    \"usuario\": {\r\n        \"id\": 33,\r\n        \"nome\": \"Jean\",\r\n        \"email\": \"jean@teste.com\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"identificacao\": \"identificacao\",\r\n    \"dataHora\": \"2019-11-23T11:53:28.722431\",\r\n    \"usuario\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Usuário Padrão\",\r\n        \"email\": \"aluno@gmail.com\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -256,15 +254,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/casos",
+							"raw": "http://localhost:8080/api-enfermagem/casos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"casos"
 							]
 						}
@@ -293,15 +290,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/casos",
+							"raw": "http://localhost:8080/api-enfermagem/casos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"casos"
 							]
 						}
@@ -314,17 +310,16 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/casos/5",
+							"raw": "http://localhost:8080/api-enfermagem/casos/148",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"casos",
-								"5"
+								"148"
 							]
 						}
 					},
@@ -342,15 +337,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/usuarios?page=1",
+							"raw": "http://localhost:8080/api-enfermagem/usuarios?page=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"usuarios"
 							],
 							"query": [
@@ -369,15 +363,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/usuarios/1",
+							"raw": "http://localhost:8080/api-enfermagem/usuarios/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"usuarios",
 								"1"
 							]
@@ -391,15 +384,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/usuarios/42",
+							"raw": "http://localhost:8080/api-enfermagem/usuarios/42",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"usuarios",
 								"42"
 							]
@@ -429,15 +421,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/usuarios",
+							"raw": "http://localhost:8080/api-enfermagem/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"usuarios"
 							]
 						}
@@ -466,15 +457,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/usuarios",
+							"raw": "http://localhost:8080/api-enfermagem/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"usuarios"
 							]
 						}
@@ -493,15 +483,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente",
+							"raw": "http://localhost:8080/api-enfermagem/quadroPaciente",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"quadroPaciente"
 							]
 						}
@@ -514,15 +503,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente/88",
+							"raw": "http://localhost:8080/api-enfermagem/quadroPaciente/88",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"quadroPaciente",
 								"88"
 							]
@@ -552,15 +540,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente",
+							"raw": "http://localhost:8080/api-enfermagem/quadroPaciente",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"quadroPaciente"
 							]
 						}
@@ -581,7 +568,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"id\": 87,\r\n    \"descricao\": \"descricao Quadro Paciente\",\r\n    \"caso\": {\r\n        \"id\": 4,\r\n        \"identificacao\": \"Prática Enfermagem II - Tarde - Paciente Jorgee\",\r\n        \"code\": \"6488D\",\r\n        \"dataHora\": \"2019-11-27T00:50:00\"\r\n    }\r\n}",
+							"raw": "{\r\n\t\"id\": 90,\r\n    \"descricao\": \"descricao Quadro Paciente\",\r\n    \"caso\": {\r\n        \"id\": 4,\r\n        \"identificacao\": \"Prática Enfermagem II - Tarde - Paciente Jorgee\",\r\n        \"code\": \"6488D\",\r\n        \"dataHora\": \"2019-11-27T00:50:00\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -589,15 +576,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente",
+							"raw": "http://localhost:8080/api-enfermagem/quadroPaciente",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"quadroPaciente"
 							]
 						}
@@ -610,17 +596,142 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/enfermagem/quadroPaciente/88",
+							"raw": "http://localhost:8080/api-enfermagem/quadroPaciente/90",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"api",
-								"enfermagem",
+								"api-enfermagem",
 								"quadroPaciente",
-								"88"
+								"90"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Comentários",
+			"item": [
+				{
+					"name": "Listar comentários",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-enfermagem/comentarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-enfermagem",
+								"comentarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar comentário",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Comentario test III\",\n    \"paciente\": {\n        \"id\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-enfermagem/comentarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-enfermagem",
+								"comentarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar comentário",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"27\",\n    \"descricao\": \"Comentario test\",\n    \"paciente\": {\n        \"id\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-enfermagem/comentarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-enfermagem",
+								"comentarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir comentário",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-enfermagem/comentarios/29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-enfermagem",
+								"comentarios",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar comentário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-enfermagem/comentarios/27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-enfermagem",
+								"comentarios",
+								"27"
 							]
 						}
 					},

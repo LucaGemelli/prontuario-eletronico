@@ -13,8 +13,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"usuario", "pacientes"})
-@ToString(exclude = {"usuario", "pacientes"})
+@EqualsAndHashCode(exclude = {"usuario", "pacientes", "quadroPacientes"})
+@ToString(exclude = {"usuario", "pacientes", "quadroPacientes"})
 @Table(name = "casos")
 public class Caso {
 
@@ -34,7 +34,6 @@ public class Caso {
     @ManyToOne
     @JoinColumn(name = "idcasousuario")
     @JsonIgnoreProperties({"casos", "pacientes"})
-    @JsonIgnore
     private Usuario usuario;
 
     @OneToMany(mappedBy = "caso", fetch = FetchType.LAZY)

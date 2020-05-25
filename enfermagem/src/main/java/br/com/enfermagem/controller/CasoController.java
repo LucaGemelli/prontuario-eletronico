@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/enfermagem/casos")
+@RequestMapping("/casos")
 public class CasoController {
 
     private final CasoService casoService;

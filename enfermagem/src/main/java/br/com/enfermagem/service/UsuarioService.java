@@ -1,50 +1,60 @@
 package br.com.enfermagem.service;
 
-import br.com.enfermagem.exception.MessageListException;
-import br.com.enfermagem.exception.NotFoundException;
-import br.com.enfermagem.model.Usuario;
-import br.com.enfermagem.repository.UsuarioRepository;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import br.com.enfermagem.dto.UsuarioDTO;
+import br.com.enfermagem.dto.UsuarioEditarDTO;
+import br.com.enfermagem.exception.MessageListException;
+import br.com.enfermagem.exception.NotFoundException;
+import br.com.enfermagem.model.Usuario;
+import br.com.enfermagem.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService {
+public class UsuarioService extends DefaultService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    public UsuarioService(final UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Page<Usuario> findAll(Pageable pageable) {
-        return usuarioRepository.findAll(pageable);
+    public Page<UsuarioDTO> findAll(final Pageable pageable) {
+       Page<Usuario> page = usuarioRepository.findAll(pageable);
+       List<UsuarioDTO> pagedto = page.stream()
+                                      .map(this::convertToDto)
+                                      .collect(Collectors.toList());
+
+       return new PageImpl<UsuarioDTO>(pagedto, pageable, pagedto.size());
     }
 
-    public Usuario findById(Long id) {
-        return findUsuarioById(id);
+    public UsuarioEditarDTO findById(Long id) {
+        return this.convertToEditarDto(findUsuarioById(id));
     }
 
-    public Usuario save(Usuario usuario) {
-        validateFields(usuario);
+    public Long save(final UsuarioEditarDTO dto) {
+        this.validateFields(dto);
 
-        if (Objects.isNull(usuario.getDataHora())) {
-            usuario.setDataHora(LocalDateTime.now());
+        if (Objects.isNull(dto.getDataHora())) {
+            dto.setDataHora(LocalDateTime.now());
         }
 
-        return usuarioRepository.save(usuario);
+        return usuarioRepository.save(this.convertToEntity(dto)).getId();
     }
 
-    public Usuario update(Usuario usuario) {
-        findUsuarioById(usuario.getId());
-        validateFields(usuario);
-        return usuarioRepository.save(usuario);
+    public Long update(UsuarioEditarDTO dto) {
+        findUsuarioById(dto.getId());
+        this.validateFields(dto);
+        return usuarioRepository.save(this.convertToEntity(dto)).getId();
     }
 
     public void delete(Long id) {
@@ -57,27 +67,39 @@ public class UsuarioService {
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
     }
 
-    private void validateFields(Usuario usuario) {
+    private void validateFields(final UsuarioEditarDTO dto) {
         List<String> exceptions = new ArrayList<>();
 
-        if (StringUtils.isBlank(usuario.getLogin())) {
+        if (StringUtils.isBlank(dto.getLogin())) {
             exceptions.add("O campo login deve ser preenchido");
         }
 
-        if (StringUtils.isBlank(usuario.getSenha())) {
+        if (StringUtils.isBlank(dto.getSenha())) {
             exceptions.add("O campo senha deve ser preenchido");
         }
 
-        if (StringUtils.isBlank(usuario.getNome())) {
+        if (StringUtils.isBlank(dto.getNome())) {
             exceptions.add("O campo nome deve ser preenchido");
         }
 
-        if (StringUtils.isBlank(usuario.getEmail())) {
+        if (StringUtils.isBlank(dto.getEmail())) {
             exceptions.add("O campo e-mail deve ser preenchido");
         }
 
         if (!exceptions.isEmpty()) {
             throw new MessageListException(exceptions);
         }
+    }
+
+    private UsuarioDTO convertToDto(final Usuario entity) {
+        return super.getModelMapper().map(entity, UsuarioDTO.class);
+     }
+
+    private UsuarioEditarDTO convertToEditarDto(final Usuario entity) {
+        return super.getModelMapper().map(entity, UsuarioEditarDTO.class);
+     }
+
+    private Usuario convertToEntity(final UsuarioDTO dto) {
+      return super.getModelMapper().map(dto, Usuario.class);
     }
 }

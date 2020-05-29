@@ -1,59 +1,70 @@
 package br.com.enfermagem.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import br.com.enfermagem.dto.CasoDTO;
+import br.com.enfermagem.dto.CasoEditarDTO;
 import br.com.enfermagem.exception.BusinessException;
 import br.com.enfermagem.exception.InvalidFieldException;
 import br.com.enfermagem.exception.NotFoundException;
 import br.com.enfermagem.model.Caso;
 import br.com.enfermagem.model.Paciente;
 import br.com.enfermagem.repository.CasoRepository;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @Service
-public class CasoService {
+public class CasoService extends DefaultService {
 
-    private final CasoRepository casoRepository;
+    private final CasoRepository repository;
+
     private final PacienteService pacienteService;
 
-    public CasoService(CasoRepository casoRepository, PacienteService pacienteService) {
-        this.casoRepository = casoRepository;
+    public CasoService(final CasoRepository repository, 
+                       final PacienteService pacienteService) {
+        this.repository = repository;
         this.pacienteService = pacienteService;
     }
 
-    public Page<Caso> findAll(Pageable pageable) {
-        return casoRepository.findAll(pageable);
+    public Page<CasoDTO> findAll(final Pageable pageable) {
+        Page<Caso> page = this.repository.findAll(pageable);
+        List<CasoDTO> casoDto = page.stream()
+                                    .map(this::convertToDto)
+                                    .collect(Collectors.toList());
+        return new PageImpl<CasoDTO>(casoDto, pageable, casoDto.size());
     }
 
-    public Caso findById(Long id) {
+    public CasoEditarDTO findById(final Long id) {
         return findCasoById(id);
     }
 
-    public Caso save(Caso caso) {
-        validateFields(caso);
+    public Long save(final CasoEditarDTO dto) {
+        validateFields(dto);
 
-        if (Objects.isNull(caso.getDataHora())) {
-            caso.setDataHora(LocalDateTime.now());
+        if (Objects.isNull(dto.getDataHora())) {
+            dto.setDataHora(LocalDateTime.now());
         }
 
-        setCodeCaso(caso);
-        return casoRepository.save(caso);
+        setCodeCaso(dto);
+        return this.repository.save(this.convertToEntity(dto)).getId();
     }
 
-    public Caso update(Caso caso) {
-        findCasoById(caso.getId());
-        validateFields(caso);
-        setCodeCaso(caso);
-        return casoRepository.save(caso);
+    public Long update(final CasoEditarDTO dto) {
+        findCasoById(dto.getId());
+        validateFields(dto);
+        setCodeCaso(dto);
+        return this.repository.save(this.convertToEntity(dto)).getId();
     }
 
-    public void delete(Long id) {
+    public void delete(final Long id) {
         findCasoById(id);
         List<Paciente> pacientesByIdCaso = pacienteService.findPacientesByIdCaso(id);
 
@@ -61,21 +72,34 @@ public class CasoService {
             throw new BusinessException("Não é possível excluir um caso referente a um paciente");
         }
 
-        casoRepository.deleteById(id);
+        this.repository.deleteById(id);
     }
 
-    private void setCodeCaso(Caso caso) {
+    private void setCodeCaso(final CasoEditarDTO caso) {
         caso.setCode(UUID.randomUUID().toString().toUpperCase().substring(0, 5));
     }
 
-    private Caso findCasoById(Long id) {
-        return casoRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Caso não encontrado!"));
+    private CasoEditarDTO findCasoById(final Long id) {
+        return this.convertToEditarDto(this.repository
+                                           .findById(id)
+                                           .orElseThrow(() -> new NotFoundException("Caso não encontrado!")));
     }
 
-    private void validateFields(Caso caso) {
-        if (StringUtils.isBlank(caso.getIdentificacao())) {
+    private void validateFields(final CasoEditarDTO dto) {
+        if (StringUtils.isBlank(dto.getIdentificacao())) {
             throw new InvalidFieldException("O campo Identificação deve ser preenchido");
         }
+    }
+
+    private CasoDTO convertToDto(final Caso entity) {
+        return super.getModelMapper().map(entity, CasoDTO.class);
+     }
+
+    private CasoEditarDTO convertToEditarDto(final Caso entity) {
+        return super.getModelMapper().map(entity, CasoEditarDTO.class);
+     }
+
+    private Caso convertToEntity(final CasoDTO dto) {
+      return super.getModelMapper().map(dto, Caso.class);
     }
 }

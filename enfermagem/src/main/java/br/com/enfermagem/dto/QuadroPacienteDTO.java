@@ -1,7 +1,5 @@
 package br.com.enfermagem.dto;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -14,10 +12,9 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CasoEditarDTO extends CasoDTO {
+public class QuadroPacienteDTO {
 
     private Long id;
 
-    private LocalDateTime dataHora;
-
+    private String descricao;
 }

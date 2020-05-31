@@ -14,10 +14,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CasoEditarDTO extends CasoDTO {
-
-    private Long id;
+public class QuadroPacienteEditarDTO extends QuadroPacienteDTO {
 
     private LocalDateTime dataHora;
-
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import br.com.enfermagem.model.QuadroPaciente;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +20,5 @@ public class CasoDTO {
 
     private String code;
 
-    private List<QuadroPaciente> quadroPacientes;
+    private List<QuadroPacienteDTO> quadroPacientes;
 }

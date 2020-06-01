@@ -1,10 +1,12 @@
 package br.com.enfermagem.controller;
 
 import br.com.enfermagem.dto.ComentarioDTO;
-import br.com.enfermagem.model.Comentario;
+import br.com.enfermagem.dto.ComentarioDetalheDTO;
 import br.com.enfermagem.service.ComentarioService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,28 +22,28 @@ public class ComentarioController {
     }
 
     @GetMapping
-    public Page<Comentario> findAll(Pageable pageable){
-        return this.comentarioService.findAll(pageable);
+    public ResponseEntity<Page<ComentarioDTO>> findAll(Pageable pageable) {
+        return new ResponseEntity<>(this.comentarioService.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Comentario findById(@PathVariable Long id) {
-        return this.comentarioService.findById(id);
+    public ResponseEntity<ComentarioDTO> findById(@PathVariable Long id) {
+        return new ResponseEntity<>(this.comentarioService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ComentarioDTO save(@RequestBody @Valid ComentarioDTO dto) {
-        return this.comentarioService.save(dto);
+    public ResponseEntity<Long> save(@RequestBody @Valid ComentarioDetalheDTO dto) {
+        return new ResponseEntity<>(this.comentarioService.save(dto), HttpStatus.OK);
     }
 
     @PutMapping
-    public ComentarioDTO update(@RequestBody @Valid ComentarioDTO dto){
-        return this.comentarioService.update(dto);
+    public ResponseEntity<Long> update(@RequestBody @Valid ComentarioDetalheDTO dto) {
+        return new ResponseEntity<>(this.comentarioService.update(dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public ResponseEntity<Long> delete(@PathVariable Long id) {
         this.comentarioService.delete(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
-
 }

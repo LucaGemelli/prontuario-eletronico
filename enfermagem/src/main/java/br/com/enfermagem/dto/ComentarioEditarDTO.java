@@ -13,8 +13,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ComentarioDTO {
+public class ComentarioEditarDTO extends ComentarioDTO {
 
+    private Long id;
     private LocalDateTime dataHora;
     private String descricao;
 }

@@ -13,8 +13,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ComentarioDTO {
+public class Fluxo24hsDTO {
 
     private LocalDateTime dataHora;
-    private String descricao;
+    private String observacoes;
+    private Long cod;
+    private String pa;
+    private String fc;
+    private String fr;
+    private String tax;
+    private String dor;
+    private String sat;
+    private String pvc;
+    private String hgt;
+    private String administrados;
+    private String eliminados;
 }

@@ -1,51 +1,66 @@
 package br.com.enfermagem.service;
 
-import br.com.enfermagem.converter.ComentarioConverter;
 import br.com.enfermagem.dto.ComentarioDTO;
+import br.com.enfermagem.dto.ComentarioDetalheDTO;
+import br.com.enfermagem.dto.ComentarioEditarDTO;
 import br.com.enfermagem.exception.NotFoundException;
 import br.com.enfermagem.model.Comentario;
 import br.com.enfermagem.repository.ComentarioRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
-public class ComentarioService {
+public class ComentarioService extends DefaultService {
 
     private final ComentarioRepository comentarioRepository;
-    private final ComentarioConverter comentarioConverter;
 
-    public ComentarioService(ComentarioRepository comentarioRepository, ComentarioConverter comentarioConverter) {
+    public ComentarioService(ComentarioRepository comentarioRepository) {
         this.comentarioRepository = comentarioRepository;
-        this.comentarioConverter = comentarioConverter;
     }
 
-    public Page<Comentario> findAll(Pageable pageable) {
-        return this.comentarioRepository.findAll(pageable);
+    public Page<ComentarioDTO> findAll(Pageable pageable) {
+        Page<Comentario> page = this.comentarioRepository.findAll(pageable);
+        List<ComentarioDTO> comentarioDTOList = page.stream().map(this::convertToDto).collect(Collectors.toList());
+
+        return new PageImpl<>(comentarioDTOList, pageable, comentarioDTOList.size());
     }
 
-    public Comentario findById(Long id) {
+    public ComentarioDTO findById(Long id) {
         return findComentarioById(id);
     }
 
-    private Comentario findComentarioById(Long id) {
-        return this.comentarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Comentário não encontrado!"));
+    private ComentarioDTO findComentarioById(Long id) {
+        return this.convertToEditarDto(this.comentarioRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Comentário não encontrado!")));
     }
 
-    public ComentarioDTO save(ComentarioDTO dto) {
-        Comentario comentario = this.comentarioConverter.convertToEntity(dto);
-        Comentario savedComentario = this.comentarioRepository.save(comentario);
-        return this.comentarioConverter.convertToDTO(savedComentario);
+    public Long save(ComentarioDetalheDTO dto) {
+        return this.comentarioRepository.save(this.convertToEntity(dto)).getId();
     }
 
-    public ComentarioDTO update(ComentarioDTO dto) {
-        Comentario comentario = this.comentarioConverter.convertToEntity(dto);
-        this.findComentarioById(comentario.getId());
-        Comentario updatedComentario = this.comentarioRepository.save(comentario);
-        return this.comentarioConverter.convertToDTO(updatedComentario);
+    public Long update(ComentarioDetalheDTO dto) {
+        this.findComentarioById(dto.getId());
+        return this.comentarioRepository.save(this.convertToEntity(dto)).getId();
     }
 
     public void delete(Long id) {
         this.comentarioRepository.deleteById(id);
+    }
+
+    private ComentarioDTO convertToDto(final Comentario entity) {
+        return super.getModelMapper().map(entity, ComentarioDTO.class);
+    }
+
+    private ComentarioEditarDTO convertToEditarDto(final Comentario entity) {
+        return super.getModelMapper().map(entity, ComentarioEditarDTO.class);
+    }
+
+    private Comentario convertToEntity(final ComentarioDetalheDTO dto) {
+        return super.getModelMapper().map(dto, Comentario.class);
     }
 }

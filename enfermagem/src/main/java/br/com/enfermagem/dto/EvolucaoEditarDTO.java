@@ -6,15 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ComentarioDTO {
+public class EvolucaoEditarDTO extends EvolucaoDTO {
 
-    private LocalDateTime dataHora;
-    private String descricao;
+    private Long id;
+
 }

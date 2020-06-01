@@ -13,8 +13,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"usuario", "caso", "comentarios"})
-@EqualsAndHashCode(exclude = {"usuario", "caso", "comentarios"})
+@ToString(exclude = {"usuario", "caso", "comentarios", "fluxo24hsList", "evolucoes"})
+@EqualsAndHashCode(exclude = {"usuario", "caso", "comentarios", "fluxo24hsList", "evolucoes"})
 @Table(name = "pacientes")
 public class Paciente {
 
@@ -284,4 +284,12 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("paciente")
     private List<Comentario> comentarios;
+
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("paciente")
+    private List<Fluxo24hs> fluxo24hsList;
+
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("paciente")
+    private List<Evolucao> evolucoes;
 }

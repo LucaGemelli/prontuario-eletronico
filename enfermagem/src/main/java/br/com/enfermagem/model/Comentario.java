@@ -20,14 +20,12 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "datahora")
     private LocalDateTime dataHora;
 
-    @Column(name = "descricaocomentario")
-    private String descricao;
+    private String descricaoComentario;
 
     @ManyToOne
     @JoinColumn(name = "idcomentariopaciente")
-    @JsonIgnoreProperties({"usuario", "caso", "comentarios"})
+    @JsonIgnoreProperties({"usuario", "caso", "comentarios", "fluxo24hsList", "evolucoes"})
     private Paciente paciente;
 }

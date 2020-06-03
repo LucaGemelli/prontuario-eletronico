@@ -23,35 +23,35 @@ import br.com.enfermagem.service.CasoService;
 @RequestMapping("/casos")
 public class CasoController {
 
-    private final CasoService casoService;
+    private final CasoService service;
 
     public CasoController(CasoService casoService) {
-        this.casoService = casoService;
+        this.service = casoService;
     }
 
     @GetMapping
     public ResponseEntity<Page<CasoDTO>> findAll(Pageable pageable) {
-        return new ResponseEntity<>(this.casoService.findAll(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CasoDTO> findById(@PathVariable Long id) {
-    	return new ResponseEntity<>(this.casoService.findById(id), HttpStatus.OK);
+    	return new ResponseEntity<>(this.service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Long> save(@Valid @RequestBody CasoEditarDTO dto) {
-        return new ResponseEntity<>(this.casoService.save(dto), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.save(dto), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<Long> update(@Valid @RequestBody CasoEditarDTO dto){
-        return new ResponseEntity<>(this.casoService.update(dto), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.update(dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id){
-        this.casoService.delete(id);
+        this.service.delete(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

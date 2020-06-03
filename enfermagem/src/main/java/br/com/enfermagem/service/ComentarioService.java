@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ComentarioService extends DefaultService {
+public class ComentarioService implements DefaultService {
 
     private final ComentarioRepository comentarioRepository;
 
@@ -53,14 +53,14 @@ public class ComentarioService extends DefaultService {
     }
 
     private ComentarioDTO convertToDto(final Comentario entity) {
-        return super.getModelMapper().map(entity, ComentarioDTO.class);
+        return this.getModelMapper().map(entity, ComentarioDTO.class);
     }
 
     private ComentarioEditarDTO convertToEditarDto(final Comentario entity) {
-        return super.getModelMapper().map(entity, ComentarioEditarDTO.class);
+        return this.getModelMapper().map(entity, ComentarioEditarDTO.class);
     }
 
     private Comentario convertToEntity(final ComentarioDetalheDTO dto) {
-        return super.getModelMapper().map(dto, Comentario.class);
+        return this.getModelMapper().map(dto, Comentario.class);
     }
 }

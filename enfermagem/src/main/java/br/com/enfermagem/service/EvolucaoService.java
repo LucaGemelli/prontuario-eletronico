@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class EvolucaoService extends DefaultService {
+public class EvolucaoService implements DefaultService {
 
     private final EvolucaoRepository repository;
 
@@ -50,11 +50,11 @@ public class EvolucaoService extends DefaultService {
     }
 
     private EvolucaoDTO convertToDto(final Evolucao entity) {
-        return super.getModelMapper().map(entity, EvolucaoDTO.class);
+        return this.getModelMapper().map(entity, EvolucaoDTO.class);
     }
 
     private EvolucaoEditarDTO convertToEditarDto(final Evolucao entity) {
-        return super.getModelMapper().map(entity, EvolucaoEditarDTO.class);
+        return this.getModelMapper().map(entity, EvolucaoEditarDTO.class);
     }
 
     private Evolucao convertToEntity(final EvolucaoDetalheDTO dto) {
@@ -62,6 +62,6 @@ public class EvolucaoService extends DefaultService {
             dto.setDataHora(LocalDateTime.now());
         }
 
-        return super.getModelMapper().map(dto, Evolucao.class);
+        return this.getModelMapper().map(dto, Evolucao.class);
     }
 }

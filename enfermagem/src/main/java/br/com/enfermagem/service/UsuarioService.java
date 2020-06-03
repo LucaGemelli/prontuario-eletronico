@@ -20,7 +20,7 @@ import br.com.enfermagem.model.Usuario;
 import br.com.enfermagem.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService extends DefaultService {
+public class UsuarioService implements DefaultService {
 
     private final UsuarioRepository usuarioRepository;
 
@@ -92,14 +92,14 @@ public class UsuarioService extends DefaultService {
     }
 
     private UsuarioDTO convertToDto(final Usuario entity) {
-        return super.getModelMapper().map(entity, UsuarioDTO.class);
+        return this.getModelMapper().map(entity, UsuarioDTO.class);
      }
 
     private UsuarioEditarDTO convertToEditarDto(final Usuario entity) {
-        return super.getModelMapper().map(entity, UsuarioEditarDTO.class);
+        return this.getModelMapper().map(entity, UsuarioEditarDTO.class);
      }
 
     private Usuario convertToEntity(final UsuarioDTO dto) {
-      return super.getModelMapper().map(dto, Usuario.class);
+      return this.getModelMapper().map(dto, Usuario.class);
     }
 }

@@ -12,7 +12,10 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EvolucaoDetalheDTO extends EvolucaoEditarDTO {
+public class PacienteDetalheDTO extends PacienteEditarDTO {
 
-    private PacienteDTO paciente;
+    private UsuarioDTO usuario;
+
+    private CasoDTO caso;
+
 }

@@ -18,25 +18,24 @@ import br.com.enfermagem.exception.BusinessException;
 import br.com.enfermagem.exception.InvalidFieldException;
 import br.com.enfermagem.exception.NotFoundException;
 import br.com.enfermagem.model.Caso;
-import br.com.enfermagem.model.Paciente;
 import br.com.enfermagem.repository.CasoRepository;
 
 @Service
-public class CasoService extends DefaultService {
+public class CasoService implements DefaultService {
 
     private final CasoRepository repository;
 
     private final PacienteService pacienteService;
 
-    public CasoService(final CasoRepository repository, 
+    public CasoService(final CasoRepository repository,
                        final PacienteService pacienteService) {
-        this.repository = repository;
         this.pacienteService = pacienteService;
+        this.repository = repository;
     }
 
     public Page<CasoDTO> findAll(final Pageable pageable) {
-        Page<Caso> page = this.repository.findAll(pageable);
-        List<CasoDTO> casoDto = page.stream()
+        final Page<Caso> page = this.repository.findAll(pageable);
+        final List<CasoDTO> casoDto = page.stream()
                                     .map(this::convertToDto)
                                     .collect(Collectors.toList());
         return new PageImpl<CasoDTO>(casoDto, pageable, casoDto.size());
@@ -47,28 +46,27 @@ public class CasoService extends DefaultService {
     }
 
     public Long save(final CasoEditarDTO dto) {
-        validateFields(dto);
+        this.validateFields(dto);
 
         if (Objects.isNull(dto.getDataHora())) {
             dto.setDataHora(LocalDateTime.now());
         }
 
-        setCodeCaso(dto);
+        this.setCodeCaso(dto);
         return this.repository.save(this.convertToEntity(dto)).getId();
     }
 
     public Long update(final CasoEditarDTO dto) {
-        findCasoById(dto.getId());
-        validateFields(dto);
-        setCodeCaso(dto);
+        this.findCasoById(dto.getId());
+        this.validateFields(dto);
+        this.setCodeCaso(dto);
         return this.repository.save(this.convertToEntity(dto)).getId();
     }
 
     public void delete(final Long id) {
-        findCasoById(id);
-        List<Paciente> pacientesByIdCaso = pacienteService.findPacientesByIdCaso(id);
+        this.findCasoById(id);
 
-        if (!pacientesByIdCaso.isEmpty()) {
+        if (!this.pacienteService.findPacientesByIdCaso(id).isEmpty()) {
             throw new BusinessException("Não é possível excluir um caso referente a um paciente");
         }
 
@@ -92,14 +90,14 @@ public class CasoService extends DefaultService {
     }
 
     private CasoDTO convertToDto(final Caso entity) {
-        return super.getModelMapper().map(entity, CasoDTO.class);
+        return this.getModelMapper().map(entity, CasoDTO.class);
      }
 
     private CasoEditarDTO convertToEditarDto(final Caso entity) {
-        return super.getModelMapper().map(entity, CasoEditarDTO.class);
+        return this.getModelMapper().map(entity, CasoEditarDTO.class);
      }
 
     private Caso convertToEntity(final CasoDTO dto) {
-      return super.getModelMapper().map(dto, Caso.class);
+      return this.getModelMapper().map(dto, Caso.class);
     }
 }

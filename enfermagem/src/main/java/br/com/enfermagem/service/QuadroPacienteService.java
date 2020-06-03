@@ -19,7 +19,7 @@ import br.com.enfermagem.model.QuadroPaciente;
 import br.com.enfermagem.repository.QuadroPacienteRepository;
 
 @Service
-public class QuadroPacienteService extends DefaultService {
+public class QuadroPacienteService implements DefaultService {
 
     private final QuadroPacienteRepository repository;
 
@@ -74,14 +74,14 @@ public class QuadroPacienteService extends DefaultService {
     }
 
     private QuadroPacienteDTO convertToDto(final QuadroPaciente entity) {
-        return super.getModelMapper().map(entity, QuadroPacienteDTO.class);
+        return this.getModelMapper().map(entity, QuadroPacienteDTO.class);
      }
 
     private QuadroPacienteEditarDTO convertToEditarDto(final QuadroPaciente entity) {
-        return super.getModelMapper().map(entity, QuadroPacienteEditarDTO.class);
+        return this.getModelMapper().map(entity, QuadroPacienteEditarDTO.class);
      }
 
     private QuadroPaciente convertToEntity(final QuadroPacienteDTO dto) {
-      return super.getModelMapper().map(dto, QuadroPaciente.class);
+      return this.getModelMapper().map(dto, QuadroPaciente.class);
     }
 }

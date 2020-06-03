@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import br.com.enfermagem.model.Paciente;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +18,6 @@ public class CasoDetalheDTO extends CasoEditarDTO {
 
     private UsuarioDTO usuarioDto;
 
-    private List<Paciente> pacientes;
+    private List<PacienteDTO> pacientes;
 
 }

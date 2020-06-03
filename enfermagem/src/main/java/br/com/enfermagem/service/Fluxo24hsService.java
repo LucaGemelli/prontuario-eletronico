@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-public class Fluxo24hsService extends DefaultService {
+public class Fluxo24hsService implements DefaultService {
 
     private final Fluxo24hsRepository repository;
 
@@ -50,11 +50,11 @@ public class Fluxo24hsService extends DefaultService {
     }
 
     private Fluxo24hsDTO convertToDto(final Fluxo24hs entity) {
-        return super.getModelMapper().map(entity, Fluxo24hsDTO.class);
+        return this.getModelMapper().map(entity, Fluxo24hsDTO.class);
     }
 
     private Fluxo24hsEditarDTO convertToEditarDto(final Fluxo24hs entity) {
-        return super.getModelMapper().map(entity, Fluxo24hsEditarDTO.class);
+        return this.getModelMapper().map(entity, Fluxo24hsEditarDTO.class);
     }
 
     private Fluxo24hs convertToEntity(final Fluxo24hsDetalheDTO dto) {
@@ -62,6 +62,6 @@ public class Fluxo24hsService extends DefaultService {
             dto.setDataHora(LocalDateTime.now());
         }
 
-        return super.getModelMapper().map(dto, Fluxo24hs.class);
+        return this.getModelMapper().map(dto, Fluxo24hs.class);
     }
 }

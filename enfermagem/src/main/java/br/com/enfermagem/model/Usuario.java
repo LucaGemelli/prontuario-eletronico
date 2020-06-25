@@ -43,8 +43,4 @@ public class Usuario {
     @JsonIgnore
     private List<Paciente> pacientes;
 
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("idCasoUsuario")
-    @JsonIgnore
-    private List<Caso> casos;
 }

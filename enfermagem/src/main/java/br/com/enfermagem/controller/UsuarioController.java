@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.enfermagem.dto.UsuarioDTO;
-import br.com.enfermagem.dto.UsuarioEditarDTO;
+import br.com.enfermagem.model.Usuario;
 import br.com.enfermagem.service.UsuarioService;
 
 @RestController
@@ -30,22 +29,22 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UsuarioDTO>> findAll(final Pageable pageable) {
+    public ResponseEntity<Page<Usuario>> findAll(final Pageable pageable) {
     	return new ResponseEntity<>(this.service.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioEditarDTO> findById(@PathVariable final Long id) {
+    public ResponseEntity<Usuario> findById(@PathVariable final Long id) {
         return new ResponseEntity<>(this.service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Long> save(@Valid @RequestBody final UsuarioEditarDTO usuario) {
+    public ResponseEntity<Long> save(@Valid @RequestBody final Usuario usuario) {
         return new ResponseEntity<>(this.service.save(usuario), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Long> update(@Valid @RequestBody final UsuarioEditarDTO usuario) {
+    public ResponseEntity<Long> update(@Valid @RequestBody final Usuario usuario) {
         return new ResponseEntity<>(this.service.update(usuario), HttpStatus.OK);
     }
 

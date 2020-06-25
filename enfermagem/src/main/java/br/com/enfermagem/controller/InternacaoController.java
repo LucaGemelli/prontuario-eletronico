@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.enfermagem.dto.CasoDTO;
-import br.com.enfermagem.dto.CasoEditarDTO;
-import br.com.enfermagem.service.CasoService;
+import br.com.enfermagem.model.Internacao;
+import br.com.enfermagem.service.InternacaoService;
 
 @RestController
-@RequestMapping("/casos")
-public class CasoController {
+@RequestMapping("/internacoes")
+public class InternacaoController {
 
-    private final CasoService service;
+    private final InternacaoService service;
 
-    public CasoController(CasoService casoService) {
-        this.service = casoService;
+    public InternacaoController(InternacaoService service) {
+        this.service = service;
     }
 
     @GetMapping
-    public ResponseEntity<Page<CasoDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<Internacao>> findAll(Pageable pageable) {
         return new ResponseEntity<>(this.service.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CasoDTO> findById(@PathVariable Long id) {
-    	return new ResponseEntity<>(this.service.findById(id), HttpStatus.OK);
+    public ResponseEntity<Internacao> findById(@PathVariable Long id) {
+        return new ResponseEntity<>(this.service.findInternacaoById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Long> save(@Valid @RequestBody CasoEditarDTO dto) {
+    public ResponseEntity<Long> save(@RequestBody @Valid Internacao dto) {
         return new ResponseEntity<>(this.service.save(dto), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Long> update(@Valid @RequestBody CasoEditarDTO dto){
+    public ResponseEntity<Long> update(@RequestBody @Valid Internacao dto) {
         return new ResponseEntity<>(this.service.update(dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> delete(@PathVariable Long id){
+    public ResponseEntity<Long> delete(@PathVariable Long id) {
         this.service.delete(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
 }

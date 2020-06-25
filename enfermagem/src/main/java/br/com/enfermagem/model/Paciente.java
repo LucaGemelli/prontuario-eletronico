@@ -1,20 +1,36 @@
 package br.com.enfermagem.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
-
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"usuario", "caso", "comentarios", "fluxo24hsList", "evolucoes"})
-@EqualsAndHashCode(exclude = {"usuario", "caso", "comentarios", "fluxo24hsList", "evolucoes"})
+@ToString(exclude = {"usuario", "sinaisvitais", "evolucoes"})
+@EqualsAndHashCode(exclude = {"usuario",  "sinaisvitais", "evolucoes"})
 @Table(name = "pacientes")
 public class Paciente {
 
@@ -276,18 +292,9 @@ public class Paciente {
     @JsonIgnoreProperties({"pacientes", "casos"})
     private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "idpacientecaso")
-    @JsonIgnoreProperties({"pacientes", "usuario", "quadroPacientes"})
-    private Caso caso;
-
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("paciente")
-    private List<Comentario> comentarios;
-
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("paciente")
-    private List<Fluxo24hs> fluxo24hsList;
+    private List<SinaisVitais> sinaisVitais;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("paciente")

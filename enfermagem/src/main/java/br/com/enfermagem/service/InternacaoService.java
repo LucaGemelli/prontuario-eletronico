@@ -5,32 +5,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.enfermagem.exception.NotFoundException;
-import br.com.enfermagem.model.Evolucao;
-import br.com.enfermagem.repository.EvolucaoRepository;
+import br.com.enfermagem.model.Internacao;
+import br.com.enfermagem.repository.InternacaoRepository;
 
 @Service
-public class EvolucaoService {
+public class InternacaoService {
 
-    private final EvolucaoRepository repository;
+    private final InternacaoRepository repository;
 
-    public EvolucaoService(EvolucaoRepository repository) {
+    public InternacaoService(InternacaoRepository repository) {
         this.repository = repository;
     }
 
-    public Page<Evolucao> findAll(Pageable pageable) {
+    public Page<Internacao> findAll(Pageable pageable) {
         return  this.repository.findAll(pageable);
     }
 
-    public Evolucao findEvolucaoById(Long id) {
+    public Internacao findInternacaoById(Long id) {
         return this.repository.findById(id).orElseThrow(() -> new NotFoundException("Evolução não encontrada!"));
     }
 
-    public Long save(Evolucao dto) {
+    public Long save(Internacao dto) {
         return this.repository.save(dto).getId();
     }
 
-    public Long update(Evolucao dto) {
-        this.findEvolucaoById(dto.getId());
+    public Long update(Internacao dto) {
+        this.findInternacaoById(dto.getId());
         return this.repository.save(dto).getId();
     }
 

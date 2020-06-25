@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.enfermagem.dto.PacienteDTO;
-import br.com.enfermagem.dto.PacienteEditarDTO;
+import br.com.enfermagem.model.Paciente;
 import br.com.enfermagem.service.PacienteService;
 
 @RestController
@@ -32,22 +31,22 @@ public class PacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PacienteDTO>> findAll(final Pageable pageable) {
+    public ResponseEntity<Page<Paciente>> findAll(final Pageable pageable) {
         return new ResponseEntity<>(pacienteService.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteEditarDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<Paciente> findById(@PathVariable Long id) {
         return new ResponseEntity<>(pacienteService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Long> save(@Valid @RequestBody PacienteEditarDTO dto) {
+    public ResponseEntity<Long> save(@Valid @RequestBody Paciente dto) {
         return new ResponseEntity<>(pacienteService.save(dto), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<Long> update(@Valid @RequestBody PacienteEditarDTO dto) {
+    public ResponseEntity<Long> update(@Valid @RequestBody Paciente dto) {
         return new ResponseEntity<>(pacienteService.update(dto), HttpStatus.OK);
     }
 
@@ -56,8 +55,4 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.delete(id), HttpStatus.OK);
     }
 
-    @GetMapping("/usuarios/{id}")
-    public ResponseEntity<List<PacienteDTO>> findPacientesByIdUsuario(@PathVariable Long id) {
-        return new ResponseEntity<>(pacienteService.findPacientesByIdUsuario(id), HttpStatus.OK);
-    }
 }

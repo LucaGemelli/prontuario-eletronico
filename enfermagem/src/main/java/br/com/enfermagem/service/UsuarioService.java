@@ -4,23 +4,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.enfermagem.dto.UsuarioDTO;
-import br.com.enfermagem.dto.UsuarioEditarDTO;
 import br.com.enfermagem.exception.MessageListException;
 import br.com.enfermagem.exception.NotFoundException;
 import br.com.enfermagem.model.Usuario;
 import br.com.enfermagem.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService implements DefaultService {
+public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
@@ -28,33 +24,28 @@ public class UsuarioService implements DefaultService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Page<UsuarioDTO> findAll(final Pageable pageable) {
-       Page<Usuario> page = usuarioRepository.findAll(pageable);
-       List<UsuarioDTO> pagedto = page.stream()
-                                      .map(this::convertToDto)
-                                      .collect(Collectors.toList());
-
-       return new PageImpl<UsuarioDTO>(pagedto, pageable, pagedto.size());
+    public Page<Usuario> findAll(final Pageable pageable) {
+       return usuarioRepository.findAll(pageable);
     }
 
-    public UsuarioEditarDTO findById(Long id) {
-        return this.convertToEditarDto(findUsuarioById(id));
+    public Usuario findById(Long id) {
+        return findUsuarioById(id);
     }
 
-    public Long save(final UsuarioEditarDTO dto) {
+    public Long save(final Usuario dto) {
         this.validateFields(dto);
 
         if (Objects.isNull(dto.getDataHora())) {
             dto.setDataHora(LocalDateTime.now());
         }
 
-        return usuarioRepository.save(this.convertToEntity(dto)).getId();
+        return usuarioRepository.save(dto).getId();
     }
 
-    public Long update(UsuarioEditarDTO dto) {
+    public Long update(Usuario dto) {
         findUsuarioById(dto.getId());
         this.validateFields(dto);
-        return usuarioRepository.save(this.convertToEntity(dto)).getId();
+        return usuarioRepository.save(dto).getId();
     }
 
     public void delete(Long id) {
@@ -67,7 +58,7 @@ public class UsuarioService implements DefaultService {
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
     }
 
-    private void validateFields(final UsuarioEditarDTO dto) {
+    private void validateFields(final Usuario dto) {
         List<String> exceptions = new ArrayList<>();
 
         if (StringUtils.isBlank(dto.getLogin())) {
@@ -89,17 +80,5 @@ public class UsuarioService implements DefaultService {
         if (!exceptions.isEmpty()) {
             throw new MessageListException(exceptions);
         }
-    }
-
-    private UsuarioDTO convertToDto(final Usuario entity) {
-        return this.getModelMapper().map(entity, UsuarioDTO.class);
-     }
-
-    private UsuarioEditarDTO convertToEditarDto(final Usuario entity) {
-        return this.getModelMapper().map(entity, UsuarioEditarDTO.class);
-     }
-
-    private Usuario convertToEntity(final UsuarioDTO dto) {
-      return this.getModelMapper().map(dto, Usuario.class);
     }
 }

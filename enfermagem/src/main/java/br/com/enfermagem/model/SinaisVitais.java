@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(exclude = "paciente")
 @Builder
 @Entity
-@Table(name = "fluxo24hs")
-public class Fluxo24hs {
+@Table(name = "sinaisvitais")
+public class SinaisVitais {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message="Preencher Campo")
+    @NotNull(message="Preencher Campo" + "cod")
     private Long cod;
     @Size(max=10, message="Máximo 10 Caracteres")
     private String pa;
@@ -48,7 +48,7 @@ public class Fluxo24hs {
 
     @ManyToOne
     @JoinColumn(name = "idFluxo24hPaciente")
-    @JsonIgnoreProperties({"usuario", "caso", "comentarios", "fluxo24hsList", "evolucoes"})
+    @JsonIgnoreProperties({"usuario", "caso", "comentarios", "sinaisVitais", "evolucoes"})
     private Paciente paciente;
 
 }

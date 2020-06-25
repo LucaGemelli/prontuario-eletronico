@@ -8,34 +8,34 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.enfermagem.exception.NotFoundException;
-import br.com.enfermagem.model.Paciente;
-import br.com.enfermagem.repository.PacienteRepository;
+import br.com.enfermagem.model.Anamnese;
+import br.com.enfermagem.repository.AnamneseRepository;
 
 @Service
-public class PacienteService {
+public class AnamneseService {
 
-    private final PacienteRepository repository;
+    private final AnamneseRepository repository;
 
-    public PacienteService(final PacienteRepository repository) {
+    public AnamneseService(final AnamneseRepository repository) {
         this.repository = repository;
     }
 
-    public Page<Paciente> findAll(final Pageable pageable) {
+    public Page<Anamnese> findAll(final Pageable pageable) {
          return repository.findAll(pageable);
     }
 
-    public Paciente findById(final Long id) {
+    public Anamnese findById(final Long id) {
         return this.findPacienteById(id);
     }
 
-    public Long save(final Paciente dto) {
-        if (Objects.isNull(dto.getDataHora())) {
-            dto.setDataHora(LocalDateTime.now());
+    public Long save(final Anamnese dto) {
+        if (Objects.isNull(dto.getDataHoraCriacao())) {
+            dto.setDataHoraCriacao(LocalDateTime.now());
         }
         return repository.save(dto).getId();
     }
 
-    public Long update(final Paciente dto) {
+    public Long update(final Anamnese dto) {
         this.findPacienteById(dto.getId());
         return repository.save(dto).getId();
     }
@@ -46,7 +46,7 @@ public class PacienteService {
         return id;
     }
 
-    private Paciente findPacienteById(final Long id) {
+    private Anamnese findPacienteById(final Long id) {
         return repository.findById(id)
                          .orElseThrow(() -> new NotFoundException("Paciente não encontrado!"));
     }

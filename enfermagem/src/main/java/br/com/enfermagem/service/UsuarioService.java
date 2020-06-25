@@ -35,8 +35,8 @@ public class UsuarioService {
     public Long save(final Usuario dto) {
         this.validateFields(dto);
 
-        if (Objects.isNull(dto.getDataHora())) {
-            dto.setDataHora(LocalDateTime.now());
+        if (Objects.isNull(dto.getDataHoraCriacao())) {
+            dto.setDataHoraCriacao(LocalDateTime.now());
         }
 
         return usuarioRepository.save(dto).getId();
@@ -60,10 +60,6 @@ public class UsuarioService {
 
     private void validateFields(final Usuario dto) {
         List<String> exceptions = new ArrayList<>();
-
-        if (StringUtils.isBlank(dto.getLogin())) {
-            exceptions.add("O campo login deve ser preenchido");
-        }
 
         if (StringUtils.isBlank(dto.getSenha())) {
             exceptions.add("O campo senha deve ser preenchido");

@@ -8,7 +8,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.enfermagem.domain.PerfilEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +38,6 @@ public class Usuario extends DefaultModel {
     private String senha;
 
     @NotNull(message="Preencher o Campo PERFIL")
-    private PerfilEnum perfil;
+    private String perfil;
 
 }

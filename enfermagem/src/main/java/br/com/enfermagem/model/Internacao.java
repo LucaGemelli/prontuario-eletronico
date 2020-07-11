@@ -73,7 +73,7 @@ public class Internacao extends DefaultModel {
     @Column(name = "motivo_internacao")
     private String motivoInternacao;
 
-    @OneToOne(mappedBy = "internacoes", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("internacoes")
-    private Evolucao anamnese;
+    @OneToOne(mappedBy = "internacao", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("internacao")
+    private Anamnese anamnese;
 }

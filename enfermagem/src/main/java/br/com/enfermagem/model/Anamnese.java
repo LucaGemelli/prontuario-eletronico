@@ -135,7 +135,7 @@ public class Anamnese extends DefaultModel{
     private Float altura;
 
     @ManyToOne
-    @JoinColumn(name = "idInternacao")
+    @JoinColumn(name = "id_internacao")
     private Internacao internacao;
 
     @OneToMany(mappedBy = "anamnese", fetch = FetchType.LAZY)

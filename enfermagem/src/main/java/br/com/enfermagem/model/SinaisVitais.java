@@ -45,7 +45,6 @@ public class SinaisVitais extends DefaultModel {
     @Size(max=10, message="Máximo 10 Caracteres FC")
     private String fc;
 
-
     @NotNull(message="Preencher Campo FR")
     @Size(max=10, message="Máximo 10 Caracteres FR")
     private String fr;
@@ -80,7 +79,7 @@ public class SinaisVitais extends DefaultModel {
     private String observacoes;
 
     @ManyToOne
-    @JoinColumn(name = "idAnamnese")
+    @JoinColumn(name = "id_anamnese")
     @JsonIgnoreProperties({"sinaisVitais", "evolucoes"})
     private Anamnese anamnese;
 

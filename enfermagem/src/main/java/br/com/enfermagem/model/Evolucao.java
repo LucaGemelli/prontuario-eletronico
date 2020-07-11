@@ -54,7 +54,7 @@ public class Evolucao extends DefaultModel {
     private String diagnostico;
 
     @ManyToOne
-    @JoinColumn(name = "idAnamnese")
+    @JoinColumn(name = "id_anamnese")
     @JsonIgnoreProperties({"sinaisVitais", "evolucoes"})
     private Anamnese anamnese;
 

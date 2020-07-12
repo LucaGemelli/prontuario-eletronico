@@ -18,11 +18,12 @@ public class InternacaoService {
     }
 
     public Page<Internacao> findAll(Pageable pageable) {
-        return  this.repository.findAll(pageable);
+        return this.repository.findAll(pageable);
     }
 
     public Internacao findInternacaoById(Long id) {
-        return this.repository.findById(id).orElseThrow(() -> new NotFoundException("Evolução não encontrada!"));
+        return this.repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Internação não encontrada!"));
     }
 
     public Long save(Internacao dto) {

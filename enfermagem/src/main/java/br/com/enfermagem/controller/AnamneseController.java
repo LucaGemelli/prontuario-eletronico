@@ -19,7 +19,7 @@ import br.com.enfermagem.model.Anamnese;
 import br.com.enfermagem.service.AnamneseService;
 
 @RestController
-@RequestMapping("/pacientes")
+@RequestMapping("/anamneses")
 public class AnamneseController {
 
     private final AnamneseService anamneseService;

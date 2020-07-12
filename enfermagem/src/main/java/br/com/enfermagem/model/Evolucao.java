@@ -26,31 +26,31 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = "anamnese")
 @ToString(exclude = "anamnese")
-@Table(name = "evolucoes")
+@Table(name = "EVOLUCOES")
 public class Evolucao extends DefaultModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message="Preencher Campo SUBJETIVO")
-    @Size(max=20, message="Máximo 20 Caracteres SUBJETIVO")
+    @NotBlank(message = "Preencher Campo SUBJETIVO")
+    @Size(max = 20, message = "Máximo 20 Caracteres SUBJETIVO")
     private String subjetivo;
 
-    @NotBlank(message="Preencher Campo OBJETIVO")
-    @Size(max=20, message="Máximo 20 Caracteres OBJETIVO")
+    @NotBlank(message = "Preencher Campo OBJETIVO")
+    @Size(max = 20, message = "Máximo 20 Caracteres OBJETIVO")
     private String objetivo;
 
-    @NotBlank(message="Preencher Campo IMPRESSÃO")
-    @Size(max=20, message="Máximo 20 Caracteres IMPRESSÃO")
+    @NotBlank(message = "Preencher Campo IMPRESSÃO")
+    @Size(max = 20, message = "Máximo 20 Caracteres IMPRESSÃO")
     private String impressao;
 
-    @NotBlank(message="Preencher Campo CONDUTA")
-    @Size(max=20, message="Máximo 20 Caracteres  CONDUTA")
+    @NotBlank(message = "Preencher Campo CONDUTA")
+    @Size(max = 20, message = "Máximo 20 Caracteres  CONDUTA")
     private String conduta;
 
-    @NotBlank(message="Preencher Campo DIAGNÓSTICO")
-    @Size(max=20, message="Máximo 20 Caracteres DIAGNÓSTICO")
+    @NotBlank(message = "Preencher Campo DIAGNÓSTICO")
+    @Size(max = 20, message = "Máximo 20 Caracteres DIAGNÓSTICO")
     private String diagnostico;
 
     @ManyToOne

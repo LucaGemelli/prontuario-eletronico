@@ -19,7 +19,7 @@ import br.com.enfermagem.model.SinaisVitais;
 import br.com.enfermagem.service.SinaisVitaisService;
 
 @RestController
-@RequestMapping("/fluxo24hs")
+@RequestMapping("/sinaisVitais")
 public class SinaisVitaisController {
 
     private final SinaisVitaisService sinaisVitaisService;

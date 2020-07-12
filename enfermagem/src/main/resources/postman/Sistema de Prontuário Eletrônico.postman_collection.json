@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "d6b12748-b47e-46bb-9d4c-e9533b040fa2",
+		"name": "Sistema de Prontuário Eletrônico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Internação",
+			"item": [
+				{
+					"name": "Salvar Internação",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"internacao I\",\r\n    \"informante\": \"informante I\",\r\n    \"sexo\": \"M\",\r\n    \"dataNascimento\": \"2010-07-01\",\r\n    \"quantidadeFilhos\": 0,\r\n    \"estadoCivil\": \"S\",\r\n    \"profissao\": \"n/a\",\r\n    \"endereco\": \"Rua A\",\r\n    \"naturalidade\": \"nat\",\r\n    \"motivoInternacao\": \"Motivo Internacao\",\r\n    \"dataHoraCriacao\": \"2020-07-11T23:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/internacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"internacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Internação",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"internacao I\",\r\n    \"informante\": \"informante I\",\r\n    \"sexo\": \"M\",\r\n    \"dataNascimento\": \"2010-07-01\",\r\n    \"quantidadeFilhos\": 0,\r\n    \"estadoCivil\": \"S\",\r\n    \"profissao\": \"n/a\",\r\n    \"endereco\": \"Rua A\",\r\n    \"naturalidade\": \"nat\",\r\n    \"motivoInternacao\": \"Motivo Internacao\",\r\n    \"dataHoraCriacao\": \"2020-07-11T23:10:54\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/internacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"internacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Internações",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/internacoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"internacoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Internação por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/internacoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"internacoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Internação",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/internacoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"internacoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7e74a18d-2f40-484f-a5ed-01e21dd92465",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d2a023b-e08c-4b92-bbde-eec24d8cb52e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Anamnese",
+			"item": [
+				{
+					"name": "Salvar Anamnese",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataHoraCriacao\": \"2020-07-11T12:11:07\",\r\n    \"doencasGraveCronica\": \"aaaaa\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Anamneses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Anamnese por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Anamnese",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"dataHoraCriacao\": \"2020-07-11T12:11:07\",\r\n    \"doencasGraveCronica\": \"aaaaa\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Anamnese",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Evolução",
+			"item": [
+				{
+					"name": "Listar Evoluções",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/evolucoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"evolucoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Evolução por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/evolucoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"evolucoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar Evolução",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subjetivo\": \"sub\",\r\n    \"objetivo\": \"obj\",\r\n    \"impressao\": \"imp\",\r\n    \"conduta\": \"cond\",\r\n    \"diagnostico\": \"diag\",\r\n    \"dataHoraCriacao\": \"2020-07-12T15:34:21\",\r\n    \"anamnese\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/evolucoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"evolucoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Evolução",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"subjetivo\": \"sub\",\r\n    \"objetivo\": \"obj\",\r\n    \"impressao\": \"imp\",\r\n    \"conduta\": \"cond\",\r\n    \"diagnostico\": \"diag\",\r\n    \"dataHoraCriacao\": \"2020-07-12T15:34:21\",\r\n    \"anamnese\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/evolucoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"evolucoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Evolução",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/evolucoes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"evolucoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

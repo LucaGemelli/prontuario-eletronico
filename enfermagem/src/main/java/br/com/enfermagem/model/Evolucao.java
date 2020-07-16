@@ -24,8 +24,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "anamnese")
-@ToString(exclude = "anamnese")
+@EqualsAndHashCode(exclude = "internacao")
+@ToString(exclude = "internacao")
 @Table(name = "EVOLUCOES")
 public class Evolucao extends DefaultModel {
 
@@ -54,8 +54,8 @@ public class Evolucao extends DefaultModel {
     private String diagnostico;
 
     @ManyToOne
-    @JoinColumn(name = "id_anamnese")
+    @JoinColumn(name = "id_internacao")
     @JsonIgnoreProperties({"sinaisVitais", "evolucoes"})
-    private Anamnese anamnese;
+    private Internacao internacao;
 
 }

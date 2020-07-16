@@ -31,13 +31,13 @@ public class EvolucaoService {
     }
 
     public Long save(Evolucao dto) {
-        findAnamneseById(dto);
+   //     findAnamneseById(dto);
         return this.repository.save(dto).getId();
     }
 
     public Long update(Evolucao dto) {
         findEvolucaoById(dto.getId());
-        findAnamneseById(dto);
+ //       findAnamneseById(dto);
         return this.repository.save(dto).getId();
     }
 
@@ -45,11 +45,11 @@ public class EvolucaoService {
         this.repository.deleteById(id);
     }
 
-    public void findAnamneseById(Evolucao dto) {
-        if (Objects.isNull(dto.getAnamnese())) {
-            throw new BusinessException("O campo anamnese deve ser informado!");
-        }
-
-        anamneseService.findById(dto.getAnamnese().getId());
-    }
+//    public void findAnamneseById(Evolucao dto) {
+//        if (Objects.isNull(dto.getAnamnese())) {
+//            throw new BusinessException("O campo anamnese deve ser informado!");
+//        }
+//
+//        anamneseService.findById(dto.getAnamnese().getId());
+//    }
 }

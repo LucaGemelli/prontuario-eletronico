@@ -6,6 +6,132 @@
 	},
 	"item": [
 		{
+			"name": "Anamnese",
+			"item": [
+				{
+					"name": "Salvar Anamnese",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Anamnese I\",\r\n    \"informante\": \"Informante A\",\r\n    \"sexo\": \"M\",\r\n    \"quantidadeFilhos\": 0,\r\n    \"estadoCivil\": \"S\",\r\n    \"profissao\": \"n/a\",\r\n    \"endereco\": \"Rua A\",\r\n    \"naturalidade\": \"N\",\r\n    \"motivoInternacao\": \"Mal estar\",\r\n    \"dataNascimento\": \"2010-07-10\",\r\n    \"dataHoraCriacao\": \"2020-07-19T00:50:07\",\r\n    \"doencasGraveCronica\": \"aaaaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Anamneses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Anamnese por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Anamnese",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Anamnese II\",\r\n    \"informante\": \"Informante A\",\r\n    \"sexo\": \"M\",\r\n    \"quantidadeFilhos\": 0,\r\n    \"estadoCivil\": \"S\",\r\n    \"profissao\": \"n/a\",\r\n    \"endereco\": \"Rua A\",\r\n    \"naturalidade\": \"N\",\r\n    \"motivoInternacao\": \"Mal estar\",\r\n    \"dataNascimento\": \"2010-07-10\",\r\n    \"dataHoraCriacao\": \"2020-07-19T00:50:07\",\r\n    \"doencasGraveCronica\": \"aaaaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Anamnese",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"anamneses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Internação",
 			"item": [
 				{
@@ -15,7 +141,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"internacao I\",\r\n    \"informante\": \"informante I\",\r\n    \"sexo\": \"M\",\r\n    \"dataNascimento\": \"2010-07-01\",\r\n    \"quantidadeFilhos\": 0,\r\n    \"estadoCivil\": \"S\",\r\n    \"profissao\": \"n/a\",\r\n    \"endereco\": \"Rua A\",\r\n    \"naturalidade\": \"nat\",\r\n    \"motivoInternacao\": \"Motivo Internacao\",\r\n    \"dataHoraCriacao\": \"2020-07-11T23:00:00\"\r\n}",
+							"raw": "{\r\n    \"status\": \"Ativo\",\r\n    \"dataHoraCriacao\": \"2020-07-19T11:25:00\",\r\n    \"anamnese\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +170,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"internacao I\",\r\n    \"informante\": \"informante I\",\r\n    \"sexo\": \"M\",\r\n    \"dataNascimento\": \"2010-07-01\",\r\n    \"quantidadeFilhos\": 0,\r\n    \"estadoCivil\": \"S\",\r\n    \"profissao\": \"n/a\",\r\n    \"endereco\": \"Rua A\",\r\n    \"naturalidade\": \"nat\",\r\n    \"motivoInternacao\": \"Motivo Internacao\",\r\n    \"dataHoraCriacao\": \"2020-07-11T23:10:54\"\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"status\": \"Inativo\",\r\n    \"dataHoraCriacao\": \"2020-07-19T11:25:00\",\r\n    \"anamnese\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -154,132 +280,6 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Anamnese",
-			"item": [
-				{
-					"name": "Salvar Anamnese",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"dataHoraCriacao\": \"2020-07-11T12:11:07\",\r\n    \"doencasGraveCronica\": \"aaaaa\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api-prontuario-eletronico",
-								"anamneses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar Anamneses",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api-prontuario-eletronico",
-								"anamneses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar Anamnese por ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api-prontuario-eletronico",
-								"anamneses",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar Anamnese",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"dataHoraCriacao\": \"2020-07-11T12:11:07\",\r\n    \"doencasGraveCronica\": \"aaaaa\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api-prontuario-eletronico",
-								"anamneses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Excluir Anamnese",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api-prontuario-eletronico/anamneses/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api-prontuario-eletronico",
-								"anamneses",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "Evolução",
 			"item": [
 				{
@@ -330,7 +330,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"subjetivo\": \"sub\",\r\n    \"objetivo\": \"obj\",\r\n    \"impressao\": \"imp\",\r\n    \"conduta\": \"cond\",\r\n    \"diagnostico\": \"diag\",\r\n    \"dataHoraCriacao\": \"2020-07-12T15:34:21\",\r\n    \"anamnese\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"subjetivo\": \"sub\",\r\n    \"objetivo\": \"obj\",\r\n    \"impressao\": \"imp\",\r\n    \"conduta\": \"cond\",\r\n    \"diagnostico\": \"diag\",\r\n    \"dataHoraCriacao\": \"2020-07-19T11:34:20\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -396,6 +396,132 @@
 							"path": [
 								"api-prontuario-eletronico",
 								"evolucoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sinais Vitais",
+			"item": [
+				{
+					"name": "Listar Sinais Vitais",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/sinaisVitais",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"sinaisVitais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Sinal Vital por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/sinaisVitais/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"sinaisVitais",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvar Sinal Vital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cod\": 1,\r\n    \"pa\": \"120x70\",\r\n    \"fc\": \"fc\",\r\n    \"fr\": \"24\",\r\n    \"tax\": \"37\",\r\n    \"dor\": \"dor\",\r\n    \"sat\": \"97\",\r\n    \"pvc\": \"4\",\r\n    \"hgt\": \"90\",\r\n    \"dataHoraCriacao\": \"2020-07-19T12:00:00\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/sinaisVitais",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"sinaisVitais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Sinal Vital",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"cod\": 1,\r\n    \"pa\": \"120x70\",\r\n    \"fc\": \"fc\",\r\n    \"fr\": \"24\",\r\n    \"tax\": \"37\",\r\n    \"dor\": \"dor\",\r\n    \"sat\": \"98\",\r\n    \"pvc\": \"6\",\r\n    \"hgt\": \"92\",\r\n    \"dataHoraCriacao\": \"2020-07-19T13:00:00\",\r\n    \"internacao\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/sinaisVitais",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"sinaisVitais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Sinal Vital",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api-prontuario-eletronico/sinaisVitais/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api-prontuario-eletronico",
+								"sinaisVitais",
 								"1"
 							]
 						}

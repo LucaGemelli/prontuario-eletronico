@@ -1,13 +1,12 @@
 package br.com.enfermagem.service;
 
 import br.com.enfermagem.exception.BusinessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
 import br.com.enfermagem.exception.NotFoundException;
 import br.com.enfermagem.model.Evolucao;
 import br.com.enfermagem.repository.EvolucaoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
@@ -15,11 +14,11 @@ import java.util.Objects;
 public class EvolucaoService {
 
     private final EvolucaoRepository repository;
-    private final AnamneseService anamneseService;
+    private final InternacaoService internacaoService;
 
-    public EvolucaoService(EvolucaoRepository repository, AnamneseService anamneseService) {
+    public EvolucaoService(EvolucaoRepository repository, InternacaoService internacaoService) {
         this.repository = repository;
-        this.anamneseService = anamneseService;
+        this.internacaoService = internacaoService;
     }
 
     public Page<Evolucao> findAll(Pageable pageable) {
@@ -31,25 +30,26 @@ public class EvolucaoService {
     }
 
     public Long save(Evolucao dto) {
-   //     findAnamneseById(dto);
+        findInternacaoByEvolucao(dto);
         return this.repository.save(dto).getId();
     }
 
     public Long update(Evolucao dto) {
         findEvolucaoById(dto.getId());
- //       findAnamneseById(dto);
+        findInternacaoByEvolucao(dto);
         return this.repository.save(dto).getId();
     }
 
     public void delete(Long id) {
+        findEvolucaoById(id);
         this.repository.deleteById(id);
     }
 
-//    public void findAnamneseById(Evolucao dto) {
-//        if (Objects.isNull(dto.getAnamnese())) {
-//            throw new BusinessException("O campo anamnese deve ser informado!");
-//        }
-//
-//        anamneseService.findById(dto.getAnamnese().getId());
-//    }
+    public void findInternacaoByEvolucao(Evolucao dto) {
+        if (Objects.isNull(dto.getInternacao())) {
+            throw new BusinessException("Preencher Campo INTERNAÇÃO");
+        }
+
+        internacaoService.findInternacaoById(dto.getInternacao().getId());
+    }
 }

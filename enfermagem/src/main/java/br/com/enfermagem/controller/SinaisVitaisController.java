@@ -35,7 +35,7 @@ public class SinaisVitaisController {
 
     @GetMapping("/{id}")
     public ResponseEntity<SinaisVitais> findById(@PathVariable Long id) {
-        return new ResponseEntity<>(this.sinaisVitaisService.findFluxoById(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.sinaisVitaisService.findSinalVitalById(id), HttpStatus.OK);
     }
 
     @PostMapping

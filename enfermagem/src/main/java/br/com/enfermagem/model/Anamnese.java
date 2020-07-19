@@ -32,8 +32,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"sinaisVitais", "evolucoes", "internacao"})
-@EqualsAndHashCode(exclude = {"sinaisVitais", "evolucoes", "internacao"})
+@ToString(exclude = "internacao")
+@EqualsAndHashCode(exclude = "internacao")
 @Table(name = "ANAMNESE")
 public class Anamnese extends DefaultModel {
 
@@ -176,7 +176,7 @@ public class Anamnese extends DefaultModel {
 
     private Float altura;
 
-    @OneToMany(mappedBy = "internacao", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("internacao")
-    private Internacao internacao;
+    @OneToMany(mappedBy = "anamnese", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"internacao", "anamnese"})
+    private List<Internacao> internacao;
 }

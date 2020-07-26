@@ -2,7 +2,7 @@ package br.com.enfermagem.domain;
 
 public enum PerfilEnum {
 
-	A ("Administrado"),
+	A ("Administrador"),
 	U ( "Usuário");
 
 	private final String perfil;

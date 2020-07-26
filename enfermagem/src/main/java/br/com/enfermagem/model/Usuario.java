@@ -1,17 +1,15 @@
 package br.com.enfermagem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
+import br.com.enfermagem.domain.PerfilEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -37,7 +35,7 @@ public class Usuario extends DefaultModel {
     @Size(max = 40, message = "Máximo 40 Caracteres")
     private String senha;
 
-    @NotBlank(message = "Preencher o Campo PERFIL")
-    private String perfil;
+    @NotNull(message = "Preencher o Campo PERFIL")
+    private PerfilEnum perfil;
 
 }

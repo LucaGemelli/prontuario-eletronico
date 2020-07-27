@@ -1,15 +1,17 @@
 package br.com.enfermagem.controller;
 
-import br.com.enfermagem.dto.LoginDTO;
-import br.com.enfermagem.service.LoginService;
+import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import br.com.enfermagem.dto.LoginDTO;
+import br.com.enfermagem.service.LoginService;
 
 @CrossOrigin
 @RestController
@@ -23,7 +25,7 @@ public class LoginController {
     }
 
     @PostMapping
-    public boolean existsUsuario(@RequestBody @Valid LoginDTO dto) {
-        return loginService.existsUsuario(dto);
+    public ResponseEntity<Boolean> existsUsuario(@RequestBody @Valid LoginDTO dto) {
+        return new ResponseEntity<>(loginService.existsUsuario(dto), HttpStatus.OK);
     }
 }

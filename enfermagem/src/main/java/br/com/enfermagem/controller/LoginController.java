@@ -20,8 +20,8 @@ public class LoginController {
     }
 
     @PostMapping
-    public boolean existsUsuario(@RequestBody @Valid LoginDTO dto) {
-        return loginService.existsUsuario(dto);
+    public ResponseEntity<Boolean> existsUsuario(@RequestBody @Valid LoginDTO dto) {
+        return new ResponseEntity<>(loginService.existsUsuario(dto), HttpStatus.OK);
     }
 
     @PutMapping("/sendEmail")
